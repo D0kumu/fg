@@ -1,0 +1,31 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+
+{% if messages %}
+				{% for message in messages %}
+				<div class="message flex bg-green-600 w-full border-green-600 rounded-md p-2">
+                    
+					<p class="flex-1 text-white text-center mx-3">
+						{{ message }}
+					</p>
+					<button class=" text-white p-1 mx-4" onclick="toggleMessage()">
+						<i class="fa fa-times cursor-pointer"></i>
+					</button>
+				</div>
+					
+				{% endfor %}
+			{% endif %}
+
+    <ul>
+        <li>
+            <a href="/auth/signup">Signup</a>
+        </li>
+        <li>
+            <a href="/auth/signin">login</a>
+        </li>
+        <li>
+            <a href="/auth/signout">logout</a>
+        </li>
+    </ul>
+    {% endblock content %} 
