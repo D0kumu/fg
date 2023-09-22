@@ -122,6 +122,18 @@ def checkout_form(request):
         newOrders.save()
     return render(request, 'checkout.html')
 
+def checkout(request):
+    user = request.user
+    carts = Cart.objects.filter(user=user.id)
+    cart_prices = []
+    for cart_item in carts:
+        cart_prices.append(cart_item.item.price)
+        
+    for item in cart_prices:
+        sub_total = sum(cart_prices)
+       
+    return render(request, 'main/checkout.html', {'sub_total':sub_total,"total":sub_total+100})
+
 def add_cart(request, flower_id):
     flower = get_object_or_404(Flower, pk=flower_id)
     Cart.objects.get_or_create(user=request.user, item=flower)
